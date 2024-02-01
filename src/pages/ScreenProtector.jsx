@@ -343,14 +343,14 @@ const ScreenProtector = ({ isDarkModeActive }) => {
       </div>
       {/* <!-- Right column container with form --> */}
       <div className="flex flex-col items-center gap-5 ">
-        <p className="md:w-[80%] lg:w-[50%] dark:text-darkMode-dark50 text-center text-lg font-bold tracking-wide">
+        <p className="md:w-[80%] lg:w-[50%] dark:text-darkMode-dark50 mb-5 text-center text-lg font-bold tracking-wide">
           أهلا وسهلا بك في نموذج طلب شراء حامي شاشة التلفاز. سيساعدك هذا النموذج
           في اختيار المنتج المناسب لك
         </p>
         <form
           ref={myFrom}
           onSubmit={handleMessage}
-          className="flex flex-col gap-2 w-full sm:w-[80%] md:w-[80%] lg:w-1/2"
+          className="flex flex-col gap-2 w-full md:w-[80%] lg:w-[55%] shadow shadow-gray-500 dark:shadow-darkMode-dark50 p-10"
         >
           {/* <!-- full name --> */}
           <div className={`${fieldStyle}`}>
@@ -362,7 +362,7 @@ const ScreenProtector = ({ isDarkModeActive }) => {
               الإسم الكامل
             </Typography>
             <Input
-              color={isDarkModeActive ? "white" : "gray"}
+              color={isDarkModeActive ? "green" : "gray"}
               label="الاسم الأول والأخير"
               className={`${inputStyle}`}
               value={message.fullName}
@@ -401,7 +401,7 @@ const ScreenProtector = ({ isDarkModeActive }) => {
               <Input
                 type="tel"
                 className={`rounded-r-none ${inputStyle} `}
-                color={isDarkModeActive ? "white" : "gray"}
+                color={isDarkModeActive ? "green" : "gray"}
                 label="رقم التليفون"
                 value={message.phone}
                 onChange={(ev) =>
@@ -422,7 +422,7 @@ const ScreenProtector = ({ isDarkModeActive }) => {
               البريد الإلكتروني
             </Typography>
             <Input
-              color={isDarkModeActive ? "white" : "gray"}
+              color={isDarkModeActive ? "green" : "gray"}
               label="البريد الإلكتروني"
               className={`${inputStyle}`}
               value={message.email}
@@ -539,12 +539,9 @@ const ScreenProtector = ({ isDarkModeActive }) => {
 
               <div className="">
                 <Input
-                  placeholder="ادخل عدد المنتج الذي تريده"
-                  className=" dark:text-darkMode-dark50 !border-t-blue-gray-200 focus:!border-t-gray-900 dark:!border-t-darkMode-dark50 dark:focus:!border-darkMode-dark50 "
-                  labelProps={{
-                    className:
-                      " text-dark before:content-none after:content-none",
-                  }}
+                  color={isDarkModeActive ? "green" : "deep-purple"}
+                  label="ادخل عدد المنتج الذي تريده"
+                  className={`${inputStyle}`}
                   value={message.flatScreensnumberOfProducts}
                   onChange={(ev) =>
                     setMessage({
@@ -617,12 +614,9 @@ const ScreenProtector = ({ isDarkModeActive }) => {
 
               <div className="">
                 <Input
-                  placeholder="ادخل عدد المنتج الذي تريده"
-                  className=" dark:text-darkMode-dark50 !border-t-blue-gray-200 focus:!border-t-gray-900 dark:!border-t-darkMode-dark50 dark:focus:!border-darkMode-dark50 "
-                  labelProps={{
-                    className:
-                      " text-dark before:content-none after:content-none",
-                  }}
+                  color={isDarkModeActive ? "green" : "deep-purple"}
+                  label="ادخل عدد المنتج الذي تريده"
+                  className={`${inputStyle}`}
                   value={message.curvedScreensNumberOfProducts}
                   onChange={(ev) =>
                     setMessage({
@@ -692,8 +686,8 @@ const ScreenProtector = ({ isDarkModeActive }) => {
               ما هي مدينتك؟
             </Typography>
             <Input
-              color={isDarkModeActive ? "white" : "gray"}
-              label="المدينة أو الحي"
+              color={isDarkModeActive ? "green" : "gray"}
+              label="المدينة _ الحي"
               className={inputStyle}
               value={message.city}
               onChange={(ev) =>
