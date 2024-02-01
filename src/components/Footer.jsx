@@ -18,7 +18,7 @@ const Footer = () => {
       <div className="mb-5 sm:mb-0 flex gap-2 items-center flex-wrap justify-center">
         {images?.map((item, index) => (
           <div key={index}>
-            <img src={item} width={50} height={50} alt="visa" />
+            <img src={item} width={30} height={30} alt="visa" />
           </div>
         ))}
       </div>
