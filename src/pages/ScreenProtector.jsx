@@ -299,7 +299,7 @@ const ScreenProtector = ({ isDarkModeActive }) => {
     []
   );
 
-  useEffect(() => {
+  const updatedProducts = () => {
     const flatScreensData =
       flatScreensList.length > 0 &&
       flatScreensList?.map((item, index) => {
@@ -310,10 +310,7 @@ const ScreenProtector = ({ isDarkModeActive }) => {
         };
       });
     setFlatScreensProductsSend(flatScreensData.length > 0 && flatScreensData);
-    console.log("yes");
-  }, []);
 
-  useEffect(() => {
     const curvedScreensData =
       curvedScreensList.length > 0 &&
       curvedScreensList?.map((item, index) => {
@@ -326,6 +323,10 @@ const ScreenProtector = ({ isDarkModeActive }) => {
     setCurvedScreensProductsSend(
       curvedScreensData.length > 0 && curvedScreensData
     );
+  };
+
+  useEffect(() => {
+    updatedProducts();
   }, []);
 
   return (
