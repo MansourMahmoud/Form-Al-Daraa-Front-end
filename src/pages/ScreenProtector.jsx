@@ -157,7 +157,7 @@ const ScreenProtector = ({ isDarkModeActive }) => {
     setCurvedScreensProductsSend(
       curvedScreensData.length > 0 && curvedScreensData
     );
-  }, [curvedScreensData]);
+  }, [curvedScreensList]);
 
   const [formLoading, setFormLoading] = useState(false);
 
