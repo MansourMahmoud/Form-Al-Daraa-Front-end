@@ -309,7 +309,9 @@ const ScreenProtector = ({ isDarkModeActive }) => {
           num: "1",
         };
       });
-    setFlatScreensProductsSend(flatScreensData.length > 0 && flatScreensData);
+    setFlatScreensProductsSend(
+      flatScreensData.length > 0 ? flatScreensData : []
+    );
 
     const curvedScreensData =
       curvedScreensList.length > 0 &&
@@ -321,7 +323,7 @@ const ScreenProtector = ({ isDarkModeActive }) => {
         };
       });
     setCurvedScreensProductsSend(
-      curvedScreensData.length > 0 && curvedScreensData
+      curvedScreensData.length > 0 ? curvedScreensData : []
     );
   };
 
