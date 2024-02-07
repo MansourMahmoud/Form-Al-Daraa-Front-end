@@ -23,6 +23,7 @@ import { Link } from "react-router-dom";
 const ScreenProtector = ({ isDarkModeActive }) => {
   const selectTypeScreen = useRef();
   const selectRegion = useRef();
+  const [formLoading, setFormLoading] = useState(false);
 
   useEffect(() => {
     // start selectTypeScreen
@@ -126,41 +127,6 @@ const ScreenProtector = ({ isDarkModeActive }) => {
       return allCheckedWithNumGreaterOne;
     }
   };
-
-  const [flatScreensProductsSend, setFlatScreensProductsSend] = useState([]);
-  const [curvedScreensProductsSend, setCurvedScreensProductsSend] = useState(
-    []
-  );
-
-  useEffect(() => {
-    const flatScreensData =
-      flatScreensList.length > 0 &&
-      flatScreensList?.map((item, index) => {
-        return {
-          productName: item,
-          isChecked: false,
-          num: "1",
-        };
-      });
-    setFlatScreensProductsSend(flatScreensData.length > 0 && flatScreensData);
-  }, []);
-
-  useEffect(() => {
-    const curvedScreensData =
-      curvedScreensList.length > 0 &&
-      curvedScreensList?.map((item, index) => {
-        return {
-          productName: item,
-          isChecked: false,
-          num: "1",
-        };
-      });
-    setCurvedScreensProductsSend(
-      curvedScreensData.length > 0 && curvedScreensData
-    );
-  }, []);
-
-  const [formLoading, setFormLoading] = useState(false);
 
   const handleMessage = async (ev) => {
     ev.preventDefault();
@@ -327,6 +293,40 @@ const ScreenProtector = ({ isDarkModeActive }) => {
     "الجوف",
     "عسير",
   ];
+
+  const [flatScreensProductsSend, setFlatScreensProductsSend] = useState([]);
+  const [curvedScreensProductsSend, setCurvedScreensProductsSend] = useState(
+    []
+  );
+
+  useEffect(() => {
+    const flatScreensData =
+      flatScreensList.length > 0 &&
+      flatScreensList?.map((item, index) => {
+        return {
+          productName: item,
+          isChecked: false,
+          num: "1",
+        };
+      });
+    setFlatScreensProductsSend(flatScreensData.length > 0 && flatScreensData);
+    console.log("yes");
+  }, []);
+
+  useEffect(() => {
+    const curvedScreensData =
+      curvedScreensList.length > 0 &&
+      curvedScreensList?.map((item, index) => {
+        return {
+          productName: item,
+          isChecked: false,
+          num: "1",
+        };
+      });
+    setCurvedScreensProductsSend(
+      curvedScreensData.length > 0 && curvedScreensData
+    );
+  }, []);
 
   return (
     <Container className="min-h-screen flex flex-col gap-8">

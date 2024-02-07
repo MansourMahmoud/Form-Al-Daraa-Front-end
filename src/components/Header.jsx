@@ -1,10 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  Navbar,
-  MobileNav,
-  Button,
-  IconButton,
-} from "@material-tailwind/react";
+import { Navbar, Button, IconButton, Collapse } from "@material-tailwind/react";
 import { navListItem } from "../utils/navListItem";
 import { Link } from "react-router-dom";
 import IconDarkMode from "../components/IconDarkMode";
@@ -111,12 +106,12 @@ const Header = ({ setIsDarkModeActive }) => {
       </div>
 
       {/* mobile */}
-      <MobileNav
+      <Collapse
         className={`${openNav === true && "mt-5"} duration-150`}
         open={openNav}
       >
         {navList}
-      </MobileNav>
+      </Collapse>
       {/* end */}
     </Navbar>
   );
