@@ -39,7 +39,7 @@ const PackageModal = ({ packageItem, open, setOpen }) => {
             {packageItem?.imagesData?.map(({ imageLink, descAlt }, index) => (
               <div
                 key={index}
-                className="flex justify-center cursor-pointer rounded-lg relative max-w-xs overflow-hidden bg-cover bg-no-repeat"
+                className="flex justify-center cursor-zoom-in rounded-lg relative max-w-xs overflow-hidden bg-cover bg-no-repeat"
               >
                 <img
                   className="h-32 max-w-full rounded-lg object-cover object-center md:h-50 transition duration-200 ease-in-out hover:scale-110"
