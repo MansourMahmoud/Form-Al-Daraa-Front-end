@@ -26,15 +26,19 @@ const Header = ({ setIsDarkModeActive }) => {
   const navList = (
     <ul className="mt-2 mb-4 flex flex-col gap-2 lg:mb-0 lg:mt-0  lg:flex-row lg:items-center lg:gap-2 xl:gap-4">
       {navListItem?.map((item, index) => (
-        <Button
-          variant="text"
-          className="font-normal dark-text dark-style-hover text-darkMode-dark50 hover:bg-darkMode-dark100 hover:text-darkMode-dark950 duration-200 p-2 "
-          onClick={() => setOpenNav(false)}
+        <Link
+          key={index}
+          to={item.goTo}
+          className="flex  w-full items-center lg:w-fit rounded  hover:bg-darkMode-dark100 group duration-300 transition-all"
         >
-          <Link to={item.goTo} className="flex items-center">
+          <Button
+            variant="text"
+            className="font-normal text-start lg:items-center text-darkMode-dark50 rounded dark-text text-base w-full hover:bg-darkMode-dark100 dark-style-hover duration-300 transition-all group-hover:text-darkMode-dark950  p-2 "
+            onClick={() => setOpenNav(false)}
+          >
             {item.name}
-          </Link>
-        </Button>
+          </Button>
+        </Link>
       ))}
     </ul>
   );

@@ -26,3 +26,6 @@
   content: "▼"; /* أو أي رمز آخر */
   margin-left: 8px; /* تحديد المسافة من اليسار حسب الحاجة */
 }
+div[data-floating-ui-portal] {
+  position: fixed !important;
+}

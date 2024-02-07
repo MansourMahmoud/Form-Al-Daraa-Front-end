@@ -10,6 +10,11 @@ import {
   Select,
   Option,
   Spinner,
+  Checkbox,
+  ListItemPrefix,
+  ListItem,
+  List,
+  Card,
 } from "@material-tailwind/react";
 import toast from "react-hot-toast";
 import axios from "axios";
@@ -17,8 +22,6 @@ import { Link } from "react-router-dom";
 
 const ScreenProtector = ({ isDarkModeActive }) => {
   const selectTypeScreen = useRef();
-  const selectFlatScreens = useRef();
-  const selectCurvedScreens = useRef();
   const selectRegion = useRef();
 
   useEffect(() => {
@@ -26,6 +29,7 @@ const ScreenProtector = ({ isDarkModeActive }) => {
     selectTypeScreen?.current?.children[0]?.children[0]?.classList?.remove(
       "left-3"
     );
+
     selectTypeScreen?.current?.children[0]?.children[0]?.classList?.add(
       "right-8"
     );
@@ -37,38 +41,6 @@ const ScreenProtector = ({ isDarkModeActive }) => {
       "left-2"
     );
     // end selectTypeScreen
-
-    // start selectFlatScreens
-    selectFlatScreens?.current?.children[0]?.children[0]?.classList?.remove(
-      "left-3"
-    );
-    selectFlatScreens?.current?.children[0]?.children[0]?.classList?.add(
-      "right-8"
-    );
-
-    selectFlatScreens?.current?.children[0]?.children[1]?.classList?.remove(
-      "right-2"
-    );
-    selectFlatScreens?.current?.children[0]?.children[1]?.classList?.add(
-      "left-2"
-    );
-    // end selectFlatScreens
-
-    // start selectCurvedScreens
-    selectCurvedScreens?.current?.children[0]?.children[0]?.classList?.remove(
-      "left-3"
-    );
-    selectCurvedScreens?.current?.children[0]?.children[0]?.classList?.add(
-      "right-8"
-    );
-
-    selectCurvedScreens?.current?.children[0]?.children[1]?.classList?.remove(
-      "right-2"
-    );
-    selectCurvedScreens?.current?.children[0]?.children[1]?.classList?.add(
-      "left-2"
-    );
-    // end selectCurvedScreens
 
     // start selectRegion
     selectRegion?.current?.children[0]?.children[0]?.classList?.remove(
@@ -88,14 +60,103 @@ const ScreenProtector = ({ isDarkModeActive }) => {
     phone: "",
     email: "",
     screenProtector: "",
-    flatScreensProducts: "",
-    flatScreensnumberOfProducts: "1",
-    curvedScreensProducts: "",
-    curvedScreensNumberOfProducts: "1",
     region: "",
     city: "",
     locationDetails: "",
   });
+
+  const flatScreensList = [
+    "واقي شاشة 98 بوصة (680 ريال)",
+    "واقي شاشة 86 بوصة (425 ريال)",
+    "واقي شاشة 85 بوصة (415 ريال)",
+    "واقي شاشة 82 بوصة (395 ريال)",
+    "واقي شاشة 75 بوصة (325 ريال)",
+    "واقي شاشة 70 بوصة (290 ريال)",
+    "واقي شاشة 65 بوصة (275 ريال)",
+    "واقي شاشة 60 بوصة (255 ريال)",
+    "واقي شاشة 58 بوصة (235 ريال)",
+    "واقي شاشة 55 بوصة (175 ريال)",
+    "واقي شاشة 50 بوصة (155 ريال)",
+    "واقي شاشة 49 بوصة (140 ريال)",
+    "واقي شاشة 48 بوصة (130 ريال)",
+    "واقي شاشة 46 بوصة (125 ريال)",
+    "واقي شاشة 43 بوصة (120 ريال)",
+    "واقي شاشة 42 بوصة (115 ريال)",
+    "واقي شاشة 40 بوصة (90 ريال)",
+    "واقي شاشة 39 بوصة (85 ريال)",
+    "واقي شاشة 32 بوصة (75 ريال)",
+    "واقي شاشة 27 بوصة (65 ريال)",
+  ];
+
+  const curvedScreensList = [
+    "واقي شاشة 98 بوصة (700 ريال)",
+    "واقي شاشة 86 بوصة (445 ريال)",
+    "واقي شاشة 85 بوصة (435 ريال)",
+    "واقي شاشة 82 بوصة (415 ريال)",
+    "واقي شاشة 75 بوصة (345 ريال)",
+    "واقي شاشة 70 بوصة (310 ريال)",
+    "واقي شاشة 65 بوصة (295 ريال)",
+    "واقي شاشة 60 بوصة (275 ريال)",
+    "واقي شاشة 58 بوصة (255 ريال)",
+    "واقي شاشة 55 بوصة (195 ريال)",
+    "واقي شاشة 50 بوصة (175 ريال)",
+    "واقي شاشة 49 بوصة (160 ريال)",
+    "واقي شاشة 48 بوصة (150 ريال)",
+    "واقي شاشة 46 بوصة (145 ريال)",
+    "واقي شاشة 43 بوصة (140 ريال)",
+    "واقي شاشة 42 بوصة (135 ريال)",
+    "واقي شاشة 40 بوصة (110 ريال)",
+    "واقي شاشة 39 بوصة (105 ريال)",
+    "واقي شاشة 32 بوصة (95 ريال)",
+    "واقي شاشة 27 بوصة (85 ريال)",
+  ];
+
+  const checkConditions = (arr) => {
+    // التحقق من أن جميع العناصر تحتوي على isChecked === false
+    const allUnchecked = arr.every((item) => item.isChecked === false);
+
+    if (allUnchecked) {
+      return false;
+    } else {
+      // التحقق من أن جميع العناصر التي isChecked === true لديها num > 1
+      const allCheckedWithNumGreaterOne = arr
+        ?.filter((item) => item.isChecked === true)
+        .every((item) => item.num >= 1);
+
+      return allCheckedWithNumGreaterOne;
+    }
+  };
+
+  const [flatScreensProductsSend, setFlatScreensProductsSend] = useState([]);
+  const [curvedScreensProductsSend, setCurvedScreensProductsSend] = useState(
+    []
+  );
+
+  useEffect(() => {
+    const flatScreensData =
+      flatScreensList.length > 0 &&
+      flatScreensList.map((item, index) => {
+        return {
+          productName: item,
+          isChecked: false,
+          num: "1",
+        };
+      });
+    setFlatScreensProductsSend(flatScreensData.length > 0 && flatScreensData);
+
+    const curvedScreensData =
+      curvedScreensList.length > 0 &&
+      curvedScreensList.map((item, index) => {
+        return {
+          productName: item,
+          isChecked: false,
+          num: "1",
+        };
+      });
+    setCurvedScreensProductsSend(
+      curvedScreensData.length > 0 && curvedScreensData
+    );
+  }, []);
 
   const [formLoading, setFormLoading] = useState(false);
 
@@ -107,10 +168,6 @@ const ScreenProtector = ({ isDarkModeActive }) => {
       phone,
       email,
       screenProtector,
-      flatScreensProducts,
-      flatScreensnumberOfProducts,
-      curvedScreensProducts,
-      curvedScreensNumberOfProducts,
       region,
       city,
       locationDetails,
@@ -143,16 +200,9 @@ const ScreenProtector = ({ isDarkModeActive }) => {
     } else if (screenProtector === "") {
       return toast.error("تأكد من إختيار حامي الشاشات هل هو مسطح أم منحني؟");
     } else if (screenProtector === "واقيات شاشات مسطحة") {
-      if (flatScreensProducts === "") {
+      if (!checkConditions(flatScreensProductsSend)) {
         return toast.error(
-          "تأكد من إختيار منتج من منتجات واقيات الشاشات المسطحة"
-        );
-      } else if (
-        flatScreensnumberOfProducts === "" ||
-        flatScreensnumberOfProducts <= 0
-      ) {
-        return toast.error(
-          "رجاء اخبرنا كم عدد المنتج الذي تريده من منتجات واقيات الشاشات المسطحة؟ علي سبيل المثال 1/2/3 ، لا يمكن ان يكون العدد 0 او سالب"
+          "تأكد من إختيار منتج من منتجات واقيات الشاشات المسطحة، بالإضافة إلى التحقق من العدد. يجب أن لا يكون العدد أقل من 1 لأي من المنتجات المختارة"
         );
       } else if (region === "") {
         return toast.error("رجاء اكتب منطقتك");
@@ -202,16 +252,9 @@ const ScreenProtector = ({ isDarkModeActive }) => {
         }
       }
     } else if (screenProtector === "واقيات شاشات منحنية") {
-      if (curvedScreensProducts === "") {
+      if (!checkConditions(curvedScreensProductsSend)) {
         return toast.error(
-          "تأكد من إختيار منتج من منتجات واقيات الشاشات المنحنية"
-        );
-      } else if (
-        curvedScreensNumberOfProducts === "" ||
-        curvedScreensNumberOfProducts <= 0
-      ) {
-        return toast.error(
-          "رجاء اخبرنا كم عدد المنتج الذي تريده من منتجات واقيات الشاشات المنحنية علي سبيل المثال 1/2/3 ، لا يمكن ان يكون العدد 0 او سالب"
+          "تأكد من إختيار منتج من منتجات واقيات الشاشات المنحنية، بالإضافة إلى التحقق من العدد. يجب أن لا يكون العدد أقل من 1 لأي من المنتجات المختارة"
         );
       } else if (region === "") {
         return toast.error("رجاء اكتب منطقتك");
@@ -266,52 +309,6 @@ const ScreenProtector = ({ isDarkModeActive }) => {
   const inputStyle = "placeholder:text-gray-200 dark-text";
   const fieldStyle = "flex flex-col gap-5";
 
-  const flatScreensList = [
-    "واقي شاشة 98 بوصة (680 ريال)",
-    "واقي شاشة 86 بوصة (425 ريال)",
-    "واقي شاشة 85 بوصة (415 ريال)",
-    "واقي شاشة 82 بوصة (395 ريال)",
-    "واقي شاشة 75 بوصة (325 ريال)",
-    "واقي شاشة 70 بوصة (290 ريال)",
-    "واقي شاشة 65 بوصة (275 ريال)",
-    "واقي شاشة 60 بوصة (255 ريال)",
-    "واقي شاشة 58 بوصة (235 ريال)",
-    "واقي شاشة 55 بوصة (175 ريال)",
-    "واقي شاشة 50 بوصة (155 ريال)",
-    "واقي شاشة 49 بوصة (140 ريال)",
-    "واقي شاشة 48 بوصة (130 ريال)",
-    "واقي شاشة 46 بوصة (125 ريال)",
-    "واقي شاشة 43 بوصة (120 ريال)",
-    "واقي شاشة 42 بوصة (115 ريال)",
-    "واقي شاشة 40 بوصة (90 ريال)",
-    "واقي شاشة 39 بوصة (85 ريال)",
-    "واقي شاشة 32 بوصة (75 ريال)",
-    "واقي شاشة 27 بوصة (65 ريال)",
-  ];
-
-  const curvedScreensList = [
-    "واقي شاشة 98 بوصة (700 ريال)",
-    "واقي شاشة 86 بوصة (445 ريال)",
-    "واقي شاشة 85 بوصة (435 ريال)",
-    "واقي شاشة 82 بوصة (415 ريال)",
-    "واقي شاشة 75 بوصة (345 ريال)",
-    "واقي شاشة 70 بوصة (310 ريال)",
-    "واقي شاشة 65 بوصة (295 ريال)",
-    "واقي شاشة 60 بوصة (275 ريال)",
-    "واقي شاشة 58 بوصة (255 ريال)",
-    "واقي شاشة 55 بوصة (195 ريال)",
-    "واقي شاشة 50 بوصة (175 ريال)",
-    "واقي شاشة 49 بوصة (160 ريال)",
-    "واقي شاشة 48 بوصة (150 ريال)",
-    "واقي شاشة 46 بوصة (145 ريال)",
-    "واقي شاشة 43 بوصة (140 ريال)",
-    "واقي شاشة 42 بوصة (135 ريال)",
-    "واقي شاشة 40 بوصة (110 ريال)",
-    "واقي شاشة 39 بوصة (105 ريال)",
-    "واقي شاشة 32 بوصة (95 ريال)",
-    "واقي شاشة 27 بوصة (85 ريال)",
-  ];
-
   const saudiRigion = [
     "الرياض",
     "الشرقية",
@@ -331,13 +328,18 @@ const ScreenProtector = ({ isDarkModeActive }) => {
 
   return (
     <Container className="min-h-screen flex flex-col gap-8">
-      <div>
+      <div className="flex items-center gap-2 flex-wrap">
         <Link to={`https://sa.al-daraa.com`} target="_blank">
           <Button
             variant={isDarkModeActive ? "outlined" : ""}
-            className="dark:text-darkMode-dark50 dark:border-white bg-[#9fdcff] text-[#001736] dark:bg-inherit"
+            className="dark:text-darkMode-dark50 text-base p-2 dark:border-white bg-[#9fdcff] text-[#001736] dark:bg-inherit"
           >
             اذهب إلى متجرنا
+          </Button>
+        </Link>
+        <Link to={`/packages-deals`}>
+          <Button className="dark:text-darkMode-dark800 text-base p-2 dark:border-white bg-gradient-to-tl from-red-900 to-purple-500 dark:from-red-500 dark:to-darkMode-dark50  dark:bg-inherit dark:hover:bg-darkMode-dark50 duration-300 transition-all">
+            تعـرف علـي آخـر العـروض
           </Button>
         </Link>
       </div>
@@ -350,7 +352,7 @@ const ScreenProtector = ({ isDarkModeActive }) => {
         <form
           ref={myFrom}
           onSubmit={handleMessage}
-          className="flex flex-col gap-2 w-full md:w-[80%] lg:w-[55%] shadow shadow-gray-500 dark:shadow-darkMode-dark50 p-10"
+          className="flex flex-col gap-2 w-full md:w-[80%] lg:w-[75%] shadow shadow-gray-500 dark:shadow-darkMode-dark50 p-10"
         >
           {/* <!-- full name --> */}
           <div className={`${fieldStyle}`}>
@@ -497,63 +499,120 @@ const ScreenProtector = ({ isDarkModeActive }) => {
               color="blue-gray"
               className={typographyStyle}
             >
-              منتجات واقيات الشاشات المسطحة
+              منتجات واقيات الشاشات المسطحة (اختر واحدة علي الأقل)
             </Typography>
-            <div className=" grid  grid-cols-1 sm:grid-cols-2 flex-wrap gap-2 w-full">
-              <div className="">
-                <Select
-                  ref={selectFlatScreens}
-                  color={isDarkModeActive ? "green" : "black"}
-                  label="إختر المنتج"
-                  className=" dark:text-darkMode-dark50"
-                  labelProps={{
-                    className: "text-[0.875rem]",
-                  }}
-                  value={message.flatScreensProducts}
-                  onChange={(value) =>
-                    setMessage({ ...message, flatScreensProducts: value })
-                  }
-                  onClick={() => {
-                    setTimeout(() => {
-                      selectFlatScreens?.current?.children[0]?.children[1]?.classList?.remove(
-                        "right-2"
-                      );
-                      selectFlatScreens?.current?.children[0]?.children[1]?.classList?.add(
-                        "left-2"
-                      );
-                    }, 1);
-                  }}
-                  name="flatScreensProducts"
-                >
-                  {flatScreensList?.map((item, index) => (
-                    <Option
-                      className="text-lg tracking-wide"
-                      key={index}
-                      value={item}
-                    >
-                      {item}
-                    </Option>
-                  ))}
-                </Select>
-              </div>
 
-              <div className="">
-                <Input
-                  color={isDarkModeActive ? "green" : "deep-purple"}
-                  label="ادخل عدد المنتج الذي تريده"
-                  className={`${inputStyle}`}
-                  value={message.flatScreensnumberOfProducts}
-                  onChange={(ev) =>
-                    setMessage({
-                      ...message,
-                      flatScreensnumberOfProducts: ev.target.value,
-                    })
-                  }
-                  type="number"
-                  name="flatScreensnumberOfProducts"
-                />
-              </div>
-            </div>
+            <Card className="bg-inherit">
+              <List className="flex flex-col gap-2">
+                {flatScreensProductsSend?.map((item, index) => (
+                  <div
+                    className={`flex flex-col lg:flex-row lg:justify-between p-2 gap-2 ${
+                      index === flatScreensProductsSend?.length - 1
+                        ? ""
+                        : " border-b-[2px] border-gray-300"
+                    }`}
+                    key={index}
+                  >
+                    <ListItem className="p-0">
+                      <label
+                        htmlFor={item?.productName}
+                        className="flex w-full cursor-pointer items-center px-3 py-2 gap-3 group "
+                      >
+                        <ListItemPrefix className="mr-3">
+                          <Checkbox
+                            color="blue"
+                            id={item?.productName}
+                            ripple={false}
+                            className="hover:before:opacity-0 dark:border-darkMode-dark50 dark:group-hover:border-darkMode-dark900"
+                            containerProps={{
+                              className: "p-0",
+                            }}
+                            checked={item?.isChecked}
+                            onChange={(ev) => {
+                              const isChecked = ev.target.checked;
+                              const existingIndex =
+                                flatScreensProductsSend.findIndex(
+                                  (p) => p.productName === item?.productName
+                                );
+
+                              if (existingIndex !== -1) {
+                                // إذا وجد العنصر، نقوم بتحديث حالته
+                                const updatedFlatScreensProductsSend = [
+                                  ...flatScreensProductsSend,
+                                ];
+                                updatedFlatScreensProductsSend[existingIndex] =
+                                  {
+                                    ...item,
+                                    isChecked,
+                                  };
+                                setFlatScreensProductsSend(
+                                  updatedFlatScreensProductsSend
+                                );
+                              } else {
+                                // إذا لم يجد العنصر، نقوم بإضافته
+                                setFlatScreensProductsSend([
+                                  ...flatScreensProductsSend,
+                                  {
+                                    ...item,
+                                    isChecked,
+                                  },
+                                ]);
+                              }
+                            }}
+                          />
+                        </ListItemPrefix>
+                        <Typography
+                          color="blue-gray"
+                          className="font-medium dark:text-darkMode-dark50 dark:group-hover:text-darkMode-dark900"
+                        >
+                          {item?.productName}
+                        </Typography>
+                      </label>
+                    </ListItem>
+                    <div className="flex justify-end items-center lg:justify-start">
+                      {item.isChecked === true && (
+                        <input
+                          type="number"
+                          value={item?.num}
+                          onChange={(ev) => {
+                            const num = ev.target.value;
+                            const existingIndex =
+                              flatScreensProductsSend.findIndex(
+                                (p) => p.productName === item?.productName
+                              );
+
+                            if (existingIndex !== -1) {
+                              // إذا وجد العنصر، نقوم بتحديث حالته
+                              const updatedFlatScreensProductsSend = [
+                                ...flatScreensProductsSend,
+                              ];
+                              updatedFlatScreensProductsSend[existingIndex] = {
+                                ...item,
+                                num,
+                              };
+                              setFlatScreensProductsSend(
+                                updatedFlatScreensProductsSend
+                              );
+                            } else {
+                              // إذا لم يجد العنصر، نقوم بإضافته
+                              setFlatScreensProductsSend([
+                                ...flatScreensProductsSend,
+                                {
+                                  ...item,
+                                  num,
+                                },
+                              ]);
+                            }
+                          }}
+                          placeholder="عدد المنتج الذي تريده"
+                          className="rounded-md text-center font-bold w-fit py-1 focus:outline-none"
+                        />
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </List>
+            </Card>
           </div>
           {/* end */}
 
@@ -572,63 +631,122 @@ const ScreenProtector = ({ isDarkModeActive }) => {
               color="blue-gray"
               className={typographyStyle}
             >
-              منتجات واقيات الشاشات المنحنية
+              منتجات واقيات الشاشات المنحنية (اختر واحدة علي الأقل)
             </Typography>
-            <div className=" grid  grid-cols-1 sm:grid-cols-2 flex-wrap gap-2 w-full">
-              <div className="">
-                <Select
-                  ref={selectCurvedScreens}
-                  color={isDarkModeActive ? "green" : "black"}
-                  label="إختر المنتج"
-                  className=" dark:text-darkMode-dark50"
-                  labelProps={{
-                    className: "text-[0.875rem]",
-                  }}
-                  value={message.curvedScreensProducts}
-                  onChange={(value) =>
-                    setMessage({ ...message, curvedScreensProducts: value })
-                  }
-                  onClick={() => {
-                    setTimeout(() => {
-                      selectCurvedScreens?.current?.children[0]?.children[1]?.classList?.remove(
-                        "right-2"
-                      );
-                      selectCurvedScreens?.current?.children[0]?.children[1]?.classList?.add(
-                        "left-2"
-                      );
-                    }, 1);
-                  }}
-                  name="curvedScreensProducts"
-                >
-                  {curvedScreensList?.map((item, index) => (
-                    <Option
-                      className="text-lg tracking-wide"
-                      key={index}
-                      value={item}
-                    >
-                      {item}
-                    </Option>
-                  ))}
-                </Select>
-              </div>
 
-              <div className="">
-                <Input
-                  color={isDarkModeActive ? "green" : "deep-purple"}
-                  label="ادخل عدد المنتج الذي تريده"
-                  className={`${inputStyle}`}
-                  value={message.curvedScreensNumberOfProducts}
-                  onChange={(ev) =>
-                    setMessage({
-                      ...message,
-                      curvedScreensNumberOfProducts: ev.target.value,
-                    })
-                  }
-                  type="number"
-                  name="curvedScreensNumberOfProducts"
-                />
-              </div>
-            </div>
+            <Card className="bg-inherit">
+              <List className="flex flex-col gap-2">
+                {curvedScreensProductsSend?.map((item, index) => (
+                  <div
+                    className={`flex flex-col lg:flex-row lg:justify-between p-2 gap-2 ${
+                      index === curvedScreensProductsSend?.length - 1
+                        ? ""
+                        : " border-b-[2px] border-gray-300"
+                    }`}
+                    key={index}
+                  >
+                    <ListItem className="p-0">
+                      <label
+                        htmlFor={item?.productName}
+                        className="flex w-full cursor-pointer items-center px-3 py-2 gap-3 group "
+                      >
+                        <ListItemPrefix className="mr-3">
+                          <Checkbox
+                            color="blue"
+                            id={item?.productName}
+                            ripple={false}
+                            className="hover:before:opacity-0 dark:border-darkMode-dark50 dark:group-hover:border-darkMode-dark900"
+                            containerProps={{
+                              className: "p-0",
+                            }}
+                            checked={item?.isChecked}
+                            onChange={(ev) => {
+                              const isChecked = ev.target.checked;
+                              const existingIndex =
+                                curvedScreensProductsSend.findIndex(
+                                  (p) => p.productName === item?.productName
+                                );
+
+                              if (existingIndex !== -1) {
+                                // إذا وجد العنصر، نقوم بتحديث حالته
+                                const updatedCurvedScreensProductsSend = [
+                                  ...curvedScreensProductsSend,
+                                ];
+                                updatedCurvedScreensProductsSend[
+                                  existingIndex
+                                ] = {
+                                  ...item,
+                                  isChecked,
+                                };
+                                setCurvedScreensProductsSend(
+                                  updatedCurvedScreensProductsSend
+                                );
+                              } else {
+                                // إذا لم يجد العنصر، نقوم بإضافته
+                                setCurvedScreensProductsSend([
+                                  ...curvedScreensProductsSend,
+                                  {
+                                    ...item,
+                                    isChecked,
+                                  },
+                                ]);
+                              }
+                            }}
+                          />
+                        </ListItemPrefix>
+                        <Typography
+                          color="blue-gray"
+                          className="font-medium dark:text-darkMode-dark50 dark:group-hover:text-darkMode-dark900"
+                        >
+                          {item?.productName}
+                        </Typography>
+                      </label>
+                    </ListItem>
+                    <div className="flex justify-end items-center lg:justify-start">
+                      {item.isChecked === true && (
+                        <input
+                          type="number"
+                          value={item?.num}
+                          onChange={(ev) => {
+                            const num = ev.target.value;
+                            const existingIndex =
+                              curvedScreensProductsSend.findIndex(
+                                (p) => p.productName === item?.productName
+                              );
+
+                            if (existingIndex !== -1) {
+                              // إذا وجد العنصر، نقوم بتحديث حالته
+                              const updatedCurvedScreensProductsSend = [
+                                ...curvedScreensProductsSend,
+                              ];
+                              updatedCurvedScreensProductsSend[existingIndex] =
+                                {
+                                  ...item,
+                                  num,
+                                };
+                              setCurvedScreensProductsSend(
+                                updatedCurvedScreensProductsSend
+                              );
+                            } else {
+                              // إذا لم يجد العنصر، نقوم بإضافته
+                              setCurvedScreensProductsSend([
+                                ...curvedScreensProductsSend,
+                                {
+                                  ...item,
+                                  num,
+                                },
+                              ]);
+                            }
+                          }}
+                          placeholder="عدد المنتج الذي تريده"
+                          className="rounded-md text-center font-bold w-fit py-1 focus:outline-none"
+                        />
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </List>
+            </Card>
           </div>
           {/* end */}
 

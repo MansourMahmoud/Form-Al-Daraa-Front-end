@@ -2,9 +2,11 @@ const withMT = require("@material-tailwind/react/utils/withMT");
 /** @type {import('tailwindcss').Config} */
 module.exports = withMT({
   content: [
+    "./src/**/*.{html,js}",
     "./src/**/*.{js,ts,jsx,tsx}",
     "./node_modules/@material-tailwind/react/components/**/*.{js,ts,jsx,tsx}",
     "./node_modules/@material-tailwind/react/theme/components/**/*.{js,ts,jsx,tsx}",
+    "./node_modules/tw-elements/dist/js/**/*.js",
   ],
   theme: {
     extend: {
@@ -77,6 +79,6 @@ module.exports = withMT({
     "2xl": "1536px",
     // => @media (min-width: 1536px) { ... }
   },
-
+  plugins: [require("tw-elements/dist/plugin.cjs")],
   darkMode: "class",
 });
