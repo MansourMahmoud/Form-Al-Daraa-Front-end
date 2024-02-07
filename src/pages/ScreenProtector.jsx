@@ -143,7 +143,8 @@ const ScreenProtector = ({ isDarkModeActive }) => {
         };
       });
     setFlatScreensProductsSend(flatScreensData.length > 0 && flatScreensData);
-
+  }, []);
+  useEffect(() => {
     const curvedScreensData =
       curvedScreensList.length > 0 &&
       curvedScreensList.map((item, index) => {
