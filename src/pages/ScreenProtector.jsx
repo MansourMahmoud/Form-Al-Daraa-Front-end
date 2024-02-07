@@ -143,7 +143,7 @@ const ScreenProtector = ({ isDarkModeActive }) => {
         };
       });
     setFlatScreensProductsSend(flatScreensData.length > 0 && flatScreensData);
-  }, []);
+  }, [flatScreensList]);
   useEffect(() => {
     const curvedScreensData =
       curvedScreensList.length > 0 &&
@@ -157,7 +157,7 @@ const ScreenProtector = ({ isDarkModeActive }) => {
     setCurvedScreensProductsSend(
       curvedScreensData.length > 0 && curvedScreensData
     );
-  }, []);
+  }, [curvedScreensData]);
 
   const [formLoading, setFormLoading] = useState(false);
 
