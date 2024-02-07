@@ -309,9 +309,7 @@ const ScreenProtector = ({ isDarkModeActive }) => {
           num: "1",
         };
       });
-    setFlatScreensProductsSend(
-      flatScreensData.length > 0 ? flatScreensData : []
-    );
+    setFlatScreensProductsSend(flatScreensData ? flatScreensData : []);
 
     const curvedScreensData =
       curvedScreensList.length > 0 &&
@@ -322,9 +320,7 @@ const ScreenProtector = ({ isDarkModeActive }) => {
           num: "1",
         };
       });
-    setCurvedScreensProductsSend(
-      curvedScreensData.length > 0 ? curvedScreensData : []
-    );
+    setCurvedScreensProductsSend(curvedScreensData ? curvedScreensData : []);
   };
 
   useEffect(() => {
