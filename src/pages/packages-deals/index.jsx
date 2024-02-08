@@ -161,7 +161,7 @@ const PackagesDeals = ({ isDarkModeActive }) => {
         {/* end */}
         {/* packages body */}
         <div>
-          <div className="pr-[2rem] md:pr-[4rem] text-xl md:text-2xl shadow dark:shadow-darkMode-dark500 py-5 mb-5 dark:text-darkMode-dark50">
+          <div className="px-[2rem] md:pr-[4rem] text-xl md:text-2xl shadow dark:shadow-darkMode-dark500 py-5 mb-5 dark:text-darkMode-dark50">
             <p>باقــات حصــرية لشاشــات الــدرع الـواقـي </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 container mx-auto justify-center gap-5 px-5">

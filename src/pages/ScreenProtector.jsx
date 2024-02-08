@@ -82,6 +82,94 @@ const ScreenProtector = ({ isDarkModeActive }) => {
     }
   };
 
+  const checkProductsbaforeSend = (arr) => {
+    // التحقق من أن جميع العناصر تحتوي على isChecked === false
+    const allchecked = arr.filter((item) => item.isChecked === true);
+
+    return allchecked;
+  };
+
+  const [flatScreensProductsSend, setFlatScreensProductsSend] = useState([]);
+  const [curvedScreensProductsSend, setCurvedScreensProductsSend] = useState(
+    []
+  );
+  const [isSet, setIsSet] = useState(false);
+  useEffect(() => {
+    const flatScreensList = [
+      "واقي شاشة 98 بوصة (680 ريال)",
+      "واقي شاشة 86 بوصة (425 ريال)",
+      "واقي شاشة 85 بوصة (415 ريال)",
+      "واقي شاشة 82 بوصة (395 ريال)",
+      "واقي شاشة 75 بوصة (325 ريال)",
+      "واقي شاشة 70 بوصة (290 ريال)",
+      "واقي شاشة 65 بوصة (275 ريال)",
+      "واقي شاشة 60 بوصة (255 ريال)",
+      "واقي شاشة 58 بوصة (235 ريال)",
+      "واقي شاشة 55 بوصة (175 ريال)",
+      "واقي شاشة 50 بوصة (155 ريال)",
+      "واقي شاشة 49 بوصة (140 ريال)",
+      "واقي شاشة 48 بوصة (130 ريال)",
+      "واقي شاشة 46 بوصة (125 ريال)",
+      "واقي شاشة 43 بوصة (120 ريال)",
+      "واقي شاشة 42 بوصة (115 ريال)",
+      "واقي شاشة 40 بوصة (90 ريال)",
+      "واقي شاشة 39 بوصة (85 ريال)",
+      "واقي شاشة 32 بوصة (75 ريال)",
+      "واقي شاشة 27 بوصة (65 ريال)",
+    ];
+
+    const flatScreensData =
+      flatScreensList.length > 0 &&
+      flatScreensList?.map((item, index) => {
+        return {
+          productName: item,
+          isChecked: false,
+          num: "1",
+        };
+      });
+    setFlatScreensProductsSend(
+      flatScreensData.length > 0 ? flatScreensData : []
+    );
+
+    // start
+    const curvedScreensList = [
+      "واقي شاشة 98 بوصة (700 ريال)",
+      "واقي شاشة 86 بوصة (445 ريال)",
+      "واقي شاشة 85 بوصة (435 ريال)",
+      "واقي شاشة 82 بوصة (415 ريال)",
+      "واقي شاشة 75 بوصة (345 ريال)",
+      "واقي شاشة 70 بوصة (310 ريال)",
+      "واقي شاشة 65 بوصة (295 ريال)",
+      "واقي شاشة 60 بوصة (275 ريال)",
+      "واقي شاشة 58 بوصة (255 ريال)",
+      "واقي شاشة 55 بوصة (195 ريال)",
+      "واقي شاشة 50 بوصة (175 ريال)",
+      "واقي شاشة 49 بوصة (160 ريال)",
+      "واقي شاشة 48 بوصة (150 ريال)",
+      "واقي شاشة 46 بوصة (145 ريال)",
+      "واقي شاشة 43 بوصة (140 ريال)",
+      "واقي شاشة 42 بوصة (135 ريال)",
+      "واقي شاشة 40 بوصة (110 ريال)",
+      "واقي شاشة 39 بوصة (105 ريال)",
+      "واقي شاشة 32 بوصة (95 ريال)",
+      "واقي شاشة 27 بوصة (85 ريال)",
+    ];
+
+    const curvedScreensData =
+      curvedScreensList.length > 0 &&
+      curvedScreensList?.map((item, index) => {
+        return {
+          productName: item,
+          isChecked: false,
+          num: "1",
+        };
+      });
+    setCurvedScreensProductsSend(
+      curvedScreensData.length > 0 ? curvedScreensData : []
+    );
+    // end
+  }, [isSet]);
+
   const handleMessage = async (ev) => {
     ev.preventDefault();
 
@@ -137,10 +225,14 @@ const ScreenProtector = ({ isDarkModeActive }) => {
       } else {
         try {
           setFormLoading(true);
+          const products = checkProductsbaforeSend(flatScreensProductsSend);
 
           // استخدام toast.promise للإشعارات
           await toast.promise(
-            axios.post("http://localhost:3001/send", message),
+            axios.post("https://al-daraa.onrender.com/send", {
+              ...message,
+              flatScreensProducts: products,
+            }),
             {
               loading: "برجاء الانتظار قليلا جاري ارسال رسالتك...",
               success: (res) => {
@@ -149,14 +241,12 @@ const ScreenProtector = ({ isDarkModeActive }) => {
                   phone: "",
                   email: "",
                   screenProtector: "",
-                  flatScreensProducts: "",
-                  flatScreensnumberOfProducts: "1",
-                  curvedScreensProducts: "",
-                  curvedScreensNumberOfProducts: "1",
                   region: "",
                   city: "",
                   locationDetails: "",
                 });
+                setFlatScreensProductsSend([]);
+                setIsSet(!isSet);
                 return `${res.data.message}`;
               },
 
@@ -189,10 +279,13 @@ const ScreenProtector = ({ isDarkModeActive }) => {
       } else {
         try {
           setFormLoading(true);
-
+          const products = checkProductsbaforeSend(curvedScreensProductsSend);
           // استخدام toast.promise للإشعارات
           await toast.promise(
-            axios.post("http://localhost:3001/send", message),
+            axios.post("https://al-daraa.onrender.com/send", {
+              ...message,
+              curvedScreensProducts: products,
+            }),
             {
               loading: "برجاء الانتظار قليلا جاري ارسال رسالتك...",
               success: (res) => {
@@ -201,14 +294,12 @@ const ScreenProtector = ({ isDarkModeActive }) => {
                   phone: "",
                   email: "",
                   screenProtector: "",
-                  flatScreensProducts: "",
-                  flatScreensnumberOfProducts: "1",
-                  curvedScreensProducts: "",
-                  curvedScreensNumberOfProducts: "1",
                   region: "",
                   city: "",
                   locationDetails: "",
                 });
+                setCurvedScreensProductsSend([]);
+                setIsSet(!isSet);
                 return `${res.data.message}`;
               },
               error: (error) => {
@@ -247,89 +338,6 @@ const ScreenProtector = ({ isDarkModeActive }) => {
     "الجوف",
     "عسير",
   ];
-
-  const [flatScreensProductsSend, setFlatScreensProductsSend] = useState([]);
-  const [curvedScreensProductsSend, setCurvedScreensProductsSend] = useState(
-    []
-  );
-
-  useEffect(() => {
-    const flatScreensList = [
-      "واقي شاشة 98 بوصة (680 ريال)",
-      "واقي شاشة 86 بوصة (425 ريال)",
-      "واقي شاشة 85 بوصة (415 ريال)",
-      "واقي شاشة 82 بوصة (395 ريال)",
-      "واقي شاشة 75 بوصة (325 ريال)",
-      "واقي شاشة 70 بوصة (290 ريال)",
-      "واقي شاشة 65 بوصة (275 ريال)",
-      "واقي شاشة 60 بوصة (255 ريال)",
-      "واقي شاشة 58 بوصة (235 ريال)",
-      "واقي شاشة 55 بوصة (175 ريال)",
-      "واقي شاشة 50 بوصة (155 ريال)",
-      "واقي شاشة 49 بوصة (140 ريال)",
-      "واقي شاشة 48 بوصة (130 ريال)",
-      "واقي شاشة 46 بوصة (125 ريال)",
-      "واقي شاشة 43 بوصة (120 ريال)",
-      "واقي شاشة 42 بوصة (115 ريال)",
-      "واقي شاشة 40 بوصة (90 ريال)",
-      "واقي شاشة 39 بوصة (85 ريال)",
-      "واقي شاشة 32 بوصة (75 ريال)",
-      "واقي شاشة 27 بوصة (65 ريال)",
-    ];
-
-    const flatScreensData =
-      flatScreensList.length > 0 &&
-      flatScreensList?.map((item, index) => {
-        return {
-          productName: item,
-          isChecked: false,
-          num: "1",
-        };
-      });
-    setFlatScreensProductsSend(
-      flatScreensData.length > 0 ? flatScreensData : []
-    );
-    console.log("yes");
-  }, []);
-
-  useEffect(() => {
-    const curvedScreensList = [
-      "واقي شاشة 98 بوصة (700 ريال)",
-      "واقي شاشة 86 بوصة (445 ريال)",
-      "واقي شاشة 85 بوصة (435 ريال)",
-      "واقي شاشة 82 بوصة (415 ريال)",
-      "واقي شاشة 75 بوصة (345 ريال)",
-      "واقي شاشة 70 بوصة (310 ريال)",
-      "واقي شاشة 65 بوصة (295 ريال)",
-      "واقي شاشة 60 بوصة (275 ريال)",
-      "واقي شاشة 58 بوصة (255 ريال)",
-      "واقي شاشة 55 بوصة (195 ريال)",
-      "واقي شاشة 50 بوصة (175 ريال)",
-      "واقي شاشة 49 بوصة (160 ريال)",
-      "واقي شاشة 48 بوصة (150 ريال)",
-      "واقي شاشة 46 بوصة (145 ريال)",
-      "واقي شاشة 43 بوصة (140 ريال)",
-      "واقي شاشة 42 بوصة (135 ريال)",
-      "واقي شاشة 40 بوصة (110 ريال)",
-      "واقي شاشة 39 بوصة (105 ريال)",
-      "واقي شاشة 32 بوصة (95 ريال)",
-      "واقي شاشة 27 بوصة (85 ريال)",
-    ];
-
-    const curvedScreensData =
-      curvedScreensList.length > 0 &&
-      curvedScreensList?.map((item, index) => {
-        return {
-          productName: item,
-          isChecked: false,
-          num: "1",
-        };
-      });
-    setCurvedScreensProductsSend(
-      curvedScreensData.length > 0 ? curvedScreensData : []
-    );
-    console.log("yes");
-  }, []);
 
   return (
     <Container className="min-h-screen flex flex-col gap-8">
