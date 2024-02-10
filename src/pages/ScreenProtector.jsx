@@ -432,7 +432,7 @@ const ScreenProtector = ({ isDarkModeActive }) => {
           className="flex flex-col gap-2 w-full md:w-[80%] lg:w-[75%] shadow shadow-gray-500 dark:shadow-darkMode-dark50 p-10"
         >
           {/* حامي الشاشات */}
-          <div className={fieldStyle}>
+          <div className={`${fieldStyle} mb-4`}>
             <Typography
               variant="h6"
               color="blue-gray"
@@ -468,87 +468,6 @@ const ScreenProtector = ({ isDarkModeActive }) => {
                 واقيات شاشات منحنية
               </Option>
             </Select>
-          </div>
-
-          {/* <!-- full name --> */}
-          <div className={`${fieldStyle}`}>
-            <Typography
-              variant="h6"
-              color="blue-gray"
-              className={typographyStyle}
-            >
-              الإسم الكامل
-            </Typography>
-            <Input
-              color={isDarkModeActive ? "green" : "gray"}
-              label="الاسم الأول والأخير"
-              className={`${inputStyle}`}
-              value={message.fullName}
-              onChange={(ev) =>
-                setMessage({ ...message, fullName: ev.target.value })
-              }
-              name="name"
-            />
-          </div>
-
-          {/* <!-- phone  --> */}
-          <div className={fieldStyle}>
-            <Typography
-              variant="h6"
-              color="blue-gray"
-              className={typographyStyle}
-            >
-              رقم الهاتف
-            </Typography>
-            <div className="relative flex">
-              <Menu placement="bottom-start">
-                <MenuHandler>
-                  <Button
-                    ripple={false}
-                    variant="text"
-                    className="dark-text cursor-default flex h-10 items-center gap-2 rounded-l-none border border-l-0 border-blue-gray-200 bg-blue-gray-500/10 pl-3"
-                  >
-                    <img
-                      src="https://upload.wikimedia.org/wikipedia/commons/0/0d/Flag_of_Saudi_Arabia.svg"
-                      alt="flag-for-egypt"
-                      className="h-4 w-4 rounded-full object-cover"
-                    />
-                  </Button>
-                </MenuHandler>
-              </Menu>
-              <Input
-                type="tel"
-                className={`rounded-r-none ${inputStyle} `}
-                color={isDarkModeActive ? "green" : "gray"}
-                label="رقم التليفون"
-                value={message.phone}
-                onChange={(ev) =>
-                  setMessage({ ...message, phone: ev.target.value })
-                }
-                name="phone"
-              />
-            </div>
-          </div>
-
-          {/* <!-- email --> */}
-          <div className={fieldStyle}>
-            <Typography
-              variant="h6"
-              color="blue-gray"
-              className={typographyStyle}
-            >
-              البريد الإلكتروني
-            </Typography>
-            <Input
-              color={isDarkModeActive ? "green" : "gray"}
-              label="البريد الإلكتروني"
-              className={`${inputStyle}`}
-              value={message.email}
-              onChange={(ev) =>
-                setMessage({ ...message, email: ev.target.value })
-              }
-              name="email"
-            />
           </div>
 
           {/* <!-- منتجات واقيات الشاشات المسطحة --> */}
@@ -816,6 +735,87 @@ const ScreenProtector = ({ isDarkModeActive }) => {
             </Card>
           </div>
           {/* end */}
+
+          {/* <!-- full name --> */}
+          <div className={`${fieldStyle}`}>
+            <Typography
+              variant="h6"
+              color="blue-gray"
+              className={typographyStyle}
+            >
+              الإسم الكامل
+            </Typography>
+            <Input
+              color={isDarkModeActive ? "green" : "gray"}
+              label="الاسم الأول والأخير"
+              className={`${inputStyle}`}
+              value={message.fullName}
+              onChange={(ev) =>
+                setMessage({ ...message, fullName: ev.target.value })
+              }
+              name="name"
+            />
+          </div>
+
+          {/* <!-- phone  --> */}
+          <div className={fieldStyle}>
+            <Typography
+              variant="h6"
+              color="blue-gray"
+              className={typographyStyle}
+            >
+              رقم الهاتف
+            </Typography>
+            <div className="relative flex">
+              <Menu placement="bottom-start">
+                <MenuHandler>
+                  <Button
+                    ripple={false}
+                    variant="text"
+                    className="dark-text cursor-default flex h-10 items-center gap-2 rounded-l-none border border-l-0 border-blue-gray-200 bg-blue-gray-500/10 pl-3"
+                  >
+                    <img
+                      src="https://upload.wikimedia.org/wikipedia/commons/0/0d/Flag_of_Saudi_Arabia.svg"
+                      alt="flag-for-egypt"
+                      className="h-4 w-4 rounded-full object-cover"
+                    />
+                  </Button>
+                </MenuHandler>
+              </Menu>
+              <Input
+                type="tel"
+                className={`rounded-r-none ${inputStyle} `}
+                color={isDarkModeActive ? "green" : "gray"}
+                label="رقم التليفون"
+                value={message.phone}
+                onChange={(ev) =>
+                  setMessage({ ...message, phone: ev.target.value })
+                }
+                name="phone"
+              />
+            </div>
+          </div>
+
+          {/* <!-- email --> */}
+          <div className={fieldStyle}>
+            <Typography
+              variant="h6"
+              color="blue-gray"
+              className={typographyStyle}
+            >
+              البريد الإلكتروني
+            </Typography>
+            <Input
+              color={isDarkModeActive ? "green" : "gray"}
+              label="البريد الإلكتروني"
+              className={`${inputStyle}`}
+              value={message.email}
+              onChange={(ev) =>
+                setMessage({ ...message, email: ev.target.value })
+              }
+              name="email"
+            />
+          </div>
 
           {/* <!-- region --> */}
           <div className={fieldStyle}>
