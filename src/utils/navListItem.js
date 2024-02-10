@@ -1,11 +1,11 @@
 //   variable list for content
 export const navListItem = [
   {
-    name: "نموذج عرض واقي الشاشة",
+    name: "نموذج عرض أسعار لواقي الشاشة",
     goTo: "/",
   },
   {
-    name: "باقات حصرية",
+    name: "تعـرف علـى عروضـنا",
     goTo: "/packages-deals",
   },
 ];

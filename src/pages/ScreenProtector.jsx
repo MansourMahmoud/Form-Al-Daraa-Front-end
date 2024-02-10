@@ -413,7 +413,7 @@ const ScreenProtector = ({ isDarkModeActive }) => {
         </Link>
         <Link to={`/packages-deals`}>
           <Button className="dark:text-darkMode-dark800 text-base p-2 md:px-4 dark:border-white bg-gradient-to-tl from-red-900 to-purple-500 dark:from-red-500 dark:to-darkMode-dark50  dark:bg-inherit dark:hover:bg-darkMode-dark50 duration-300 transition-all">
-            تعـرف علـي آخـر العـروض
+            تعـرف علـى عروضـنا
           </Button>
         </Link>
       </div>
@@ -431,6 +431,45 @@ const ScreenProtector = ({ isDarkModeActive }) => {
           onSubmit={handleMessage}
           className="flex flex-col gap-2 w-full md:w-[80%] lg:w-[75%] shadow shadow-gray-500 dark:shadow-darkMode-dark50 p-10"
         >
+          {/* حامي الشاشات */}
+          <div className={fieldStyle}>
+            <Typography
+              variant="h6"
+              color="blue-gray"
+              className={typographyStyle}
+            >
+              نوع حامي الشاشة
+            </Typography>
+
+            <Select
+              ref={selectTypeScreen}
+              color={isDarkModeActive ? "green" : "black"}
+              label="إختر نوع حامي الشاشة"
+              className="dark:text-darkMode-dark50"
+              labelProps={{
+                className: "text-[0.875rem]",
+              }}
+              value={message.screenProtector}
+              onChange={(value) => {
+                setMessage({ ...message, screenProtector: value });
+              }}
+              name="screenProtector"
+            >
+              <Option
+                className="text-lg tracking-wide"
+                value="واقيات شاشات مسطحة"
+              >
+                واقيات شاشات مسطحة
+              </Option>
+              <Option
+                className="text-lg tracking-wide"
+                value="واقيات شاشات منحنية"
+              >
+                واقيات شاشات منحنية
+              </Option>
+            </Select>
+          </div>
+
           {/* <!-- full name --> */}
           <div className={`${fieldStyle}`}>
             <Typography
@@ -510,45 +549,6 @@ const ScreenProtector = ({ isDarkModeActive }) => {
               }
               name="email"
             />
-          </div>
-
-          {/* حامي الشاشات */}
-          <div className={fieldStyle}>
-            <Typography
-              variant="h6"
-              color="blue-gray"
-              className={typographyStyle}
-            >
-              نوع حامي الشاشة
-            </Typography>
-
-            <Select
-              ref={selectTypeScreen}
-              color={isDarkModeActive ? "green" : "black"}
-              label="إختر نوع حامي الشاشة"
-              className="dark:text-darkMode-dark50"
-              labelProps={{
-                className: "text-[0.875rem]",
-              }}
-              value={message.screenProtector}
-              onChange={(value) => {
-                setMessage({ ...message, screenProtector: value });
-              }}
-              name="screenProtector"
-            >
-              <Option
-                className="text-lg tracking-wide"
-                value="واقيات شاشات مسطحة"
-              >
-                واقيات شاشات مسطحة
-              </Option>
-              <Option
-                className="text-lg tracking-wide"
-                value="واقيات شاشات منحنية"
-              >
-                واقيات شاشات منحنية
-              </Option>
-            </Select>
           </div>
 
           {/* <!-- منتجات واقيات الشاشات المسطحة --> */}
