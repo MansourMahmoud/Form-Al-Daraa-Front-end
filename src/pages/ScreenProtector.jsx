@@ -335,20 +335,23 @@ const ScreenProtector = ({ isDarkModeActive }) => {
         <Link to={`https://sa.al-daraa.com`} target="_blank">
           <Button
             variant={isDarkModeActive ? "outlined" : ""}
-            className="dark:text-darkMode-dark50 text-base p-2 dark:border-white bg-[#9fdcff] text-[#001736] dark:bg-inherit"
+            className="dark:text-darkMode-dark50 text-base p-2 px-4 dark:border-white bg-[#52c0ff] text-darkMode-dark50 dark:bg-inherit"
           >
-            اذهب إلى متجرنا
+            قـم بزيـارة متجرنـا
           </Button>
         </Link>
         <Link to={`/packages-deals`}>
-          <Button className="dark:text-darkMode-dark800 text-base p-2 dark:border-white bg-gradient-to-tl from-red-900 to-purple-500 dark:from-red-500 dark:to-darkMode-dark50  dark:bg-inherit dark:hover:bg-darkMode-dark50 duration-300 transition-all">
+          <Button className="dark:text-darkMode-dark800 text-base p-2 px-4 dark:border-white bg-gradient-to-tl from-red-900 to-purple-500 dark:from-red-500 dark:to-darkMode-dark50  dark:bg-inherit dark:hover:bg-darkMode-dark50 duration-300 transition-all">
             تعـرف علـي آخـر العـروض
           </Button>
         </Link>
       </div>
       {/* <!-- Right column container with form --> */}
       <div className="flex flex-col items-center gap-5 ">
-        <p className="md:w-[80%] lg:w-[50%] dark:text-darkMode-dark50 mb-5 text-center text-lg font-bold tracking-wide">
+        <p className=" dark:text-darkMode-dark50  text-center text-2xl font-bold tracking-wide">
+          نمـوذج عـرض الأسعـار
+        </p>
+        <p className="md:w-[80%] lg:w-[60%] text-darkMode-dark500 dark:text-darkMode-dark400 mb-5 text-center text-base font-bold tracking-wide">
           أهلا وسهلا بك في نموذج طلب شراء حامي شاشة التلفاز. سيساعدك هذا النموذج
           في اختيار المنتج المناسب لك
         </p>
