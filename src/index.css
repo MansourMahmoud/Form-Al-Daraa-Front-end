@@ -30,3 +30,7 @@ div[data-floating-ui-portal] {
   position: relative !important;
   z-index: 880;
 }
+
+.grid.place-items-center.absolute.w-5.h-5.text-blue-gray-400.rotate-0.transition-all {
+  @apply right-[90%] md:right-[92%] lg:right-[95%];
+}

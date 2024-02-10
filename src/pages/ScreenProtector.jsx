@@ -25,36 +25,6 @@ const ScreenProtector = ({ isDarkModeActive }) => {
   const selectRegion = useRef();
   const [formLoading, setFormLoading] = useState(false);
 
-  useEffect(() => {
-    // start selectTypeScreen
-    selectTypeScreen?.current?.children[0]?.children[0]?.classList?.remove(
-      "left-3"
-    );
-
-    selectTypeScreen?.current?.children[0]?.children[0]?.classList?.add(
-      "right-8"
-    );
-
-    selectTypeScreen?.current?.children[0]?.children[1]?.classList?.remove(
-      "right-2"
-    );
-    selectTypeScreen?.current?.children[0]?.children[1]?.classList?.add(
-      "left-2"
-    );
-    // end selectTypeScreen
-
-    // start selectRegion
-    selectRegion?.current?.children[0]?.children[0]?.classList?.remove(
-      "left-3"
-    );
-    selectRegion?.current?.children[0]?.children[0]?.classList?.add("right-8");
-
-    selectRegion?.current?.children[0]?.children[1]?.classList?.remove(
-      "right-2"
-    );
-    selectRegion?.current?.children[0]?.children[1]?.classList?.add("left-2");
-    // end selectRegion
-  }, []);
   const myFrom = useRef(null);
   const [message, setMessage] = useState({
     fullName: "",
@@ -185,7 +155,7 @@ const ScreenProtector = ({ isDarkModeActive }) => {
 
     const isEmailValid = (email) => {
       // ريجيولر إكسبريشن للتحقق من صحة الإيميل
-      const emailRegex = /^[a-z0-9](\.?[a-z0-9]){5,}@(gmail|yahoo)\.com$/;
+      const emailRegex = /^[a-zA-Z0-9](\.?[a-zA-Z0-9]){2,}@(gmail|yahoo)\.com$/;
       return emailRegex.test(email);
     };
 
@@ -339,6 +309,26 @@ const ScreenProtector = ({ isDarkModeActive }) => {
     "عسير",
   ];
 
+  useEffect(() => {
+    // start selectTypeScreen
+    selectTypeScreen?.current?.children[0]?.children[0]?.classList?.remove(
+      "left-3"
+    );
+
+    selectTypeScreen?.current?.children[0]?.children[0]?.classList?.add(
+      "right-8"
+    );
+
+    // end selectTypeScreen
+
+    // start selectRegion
+    selectRegion?.current?.children[0]?.children[0]?.classList?.remove(
+      "left-3"
+    );
+    selectRegion?.current?.children[0]?.children[0]?.classList?.add("right-8");
+    // end selectRegion
+  }, []);
+
   return (
     <Container className="min-h-screen flex flex-col gap-8">
       <div className="flex items-center gap-2 flex-wrap">
@@ -469,16 +459,6 @@ const ScreenProtector = ({ isDarkModeActive }) => {
               value={message.screenProtector}
               onChange={(value) => {
                 setMessage({ ...message, screenProtector: value });
-              }}
-              onClick={() => {
-                setTimeout(() => {
-                  selectTypeScreen?.current?.children[0]?.children[1]?.classList?.remove(
-                    "right-2"
-                  );
-                  selectTypeScreen?.current?.children[0]?.children[1]?.classList?.add(
-                    "left-2"
-                  );
-                }, 1);
               }}
               name="screenProtector"
             >
@@ -783,16 +763,6 @@ const ScreenProtector = ({ isDarkModeActive }) => {
               }}
               value={message.region}
               onChange={(value) => setMessage({ ...message, region: value })}
-              onClick={() => {
-                setTimeout(() => {
-                  selectRegion?.current?.children[0]?.children[1]?.classList?.remove(
-                    "right-2"
-                  );
-                  selectRegion?.current?.children[0]?.children[1]?.classList?.add(
-                    "left-2"
-                  );
-                }, 1);
-              }}
               name="flatScreensProducts"
             >
               {saudiRigion?.map((item, index) => (
