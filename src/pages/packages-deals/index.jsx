@@ -64,15 +64,19 @@ const PackagesDeals = ({ isDarkModeActive }) => {
       imagesData: [
         {
           imageLink: package1,
+          descAlt: "حامي شاشة 82 بوصة",
         },
         {
           imageLink: package2,
+          descAlt: "حامي شاشة 98 بوصة",
         },
         {
           imageLink: package3,
+          descAlt: "حامي شاشة 98 بوصة",
         },
         {
           imageLink: package1,
+          descAlt: "حامي شاشة 82 بوصة",
         },
       ],
     },
@@ -93,15 +97,19 @@ const PackagesDeals = ({ isDarkModeActive }) => {
       imagesData: [
         {
           imageLink: package1,
+          descAlt: "حامي شاشة 82 بوصة",
         },
         {
           imageLink: package2,
+          descAlt: "حامي شاشة 98 بوصة",
         },
         {
           imageLink: package3,
+          descAlt: "حامي شاشة 98 بوصة",
         },
         {
           imageLink: package1,
+          descAlt: "حامي شاشة 82 بوصة",
         },
       ],
     },
@@ -122,15 +130,19 @@ const PackagesDeals = ({ isDarkModeActive }) => {
       imagesData: [
         {
           imageLink: package1,
+          descAlt: "حامي شاشة 82 بوصة",
         },
         {
           imageLink: package2,
+          descAlt: "حامي شاشة 98 بوصة",
         },
         {
           imageLink: package3,
+          descAlt: "حامي شاشة 98 بوصة",
         },
         {
           imageLink: package1,
+          descAlt: "حامي شاشة 82 بوصة",
         },
       ],
     },

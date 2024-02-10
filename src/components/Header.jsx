@@ -44,7 +44,7 @@ const Header = ({ setIsDarkModeActive }) => {
         <Link
           target="_blank"
           to="https://sa.al-daraa.com"
-          className="mr-4 cursor-pointer hover:scale-105 dark:hover:shadow-sm p-2 dark:hover:rounded-full dark:hover:shadow-white duration-300 transition-all ease-in-out "
+          className="mr-4 cursor-pointer hover:scale-105 shadow-sm shadow-danger-50 p-2 rounded dark:hover:shadow-white duration-300 transition-all ease-in-out "
         >
           <img
             src={websiteLogo}
