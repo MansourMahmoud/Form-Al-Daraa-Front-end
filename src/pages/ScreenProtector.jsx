@@ -330,18 +330,18 @@ const ScreenProtector = ({ isDarkModeActive }) => {
   }, []);
 
   return (
-    <Container className="min-h-screen flex flex-col gap-8">
+    <Container className="min-h-screen flex flex-col gap-16">
       <div className="flex items-center gap-2 flex-wrap">
         <Link to={`https://sa.al-daraa.com`} target="_blank">
           <Button
             variant={isDarkModeActive ? "outlined" : ""}
-            className="dark:text-darkMode-dark50 text-base p-2 px-4 dark:border-white bg-[#52c0ff] text-darkMode-dark50 dark:bg-inherit"
+            className="dark:text-darkMode-dark50 text-base p-2 md:px-4 dark:border-white bg-[#52c0ff] text-darkMode-dark50 dark:bg-inherit"
           >
             قـم بزيـارة متجرنـا
           </Button>
         </Link>
         <Link to={`/packages-deals`}>
-          <Button className="dark:text-darkMode-dark800 text-base p-2 px-4 dark:border-white bg-gradient-to-tl from-red-900 to-purple-500 dark:from-red-500 dark:to-darkMode-dark50  dark:bg-inherit dark:hover:bg-darkMode-dark50 duration-300 transition-all">
+          <Button className="dark:text-darkMode-dark800 text-base p-2 md:px-4 dark:border-white bg-gradient-to-tl from-red-900 to-purple-500 dark:from-red-500 dark:to-darkMode-dark50  dark:bg-inherit dark:hover:bg-darkMode-dark50 duration-300 transition-all">
             تعـرف علـي آخـر العـروض
           </Button>
         </Link>

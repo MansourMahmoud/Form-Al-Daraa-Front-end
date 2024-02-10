@@ -19,7 +19,7 @@ const Layout = () => {
       <Toaster position="top-center" reverseOrder={false} />
 
       <Header setIsDarkModeActive={setIsDarkModeActive} />
-      <div className="min-h-[80vh] my-10">
+      <div className="min-h-[80vh] my-3">
         <Routes>
           <Route
             path="/"
