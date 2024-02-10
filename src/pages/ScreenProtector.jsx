@@ -23,6 +23,8 @@ import { Link } from "react-router-dom";
 const ScreenProtector = ({ isDarkModeActive }) => {
   const selectTypeScreen = useRef();
   const selectRegion = useRef();
+  const selectCities = useRef();
+
   const [formLoading, setFormLoading] = useState(false);
 
   const myFrom = useRef(null);
@@ -292,21 +294,83 @@ const ScreenProtector = ({ isDarkModeActive }) => {
   const inputStyle = "placeholder:text-gray-200 dark-text";
   const fieldStyle = "flex flex-col gap-5";
 
-  const saudiRigion = [
+  const saudiRegions = [
+    "المنطقة الشرقية",
+    "منطقة الرياض",
+    "منطقة مكة المكرمة",
+    "منطقة المدينة المنورة",
+    "منطقة عسير",
+    "منطقة القصيم",
+    "منطقة تبوك",
+    "منطقة حائل",
+    "منطقة الجوف",
+    "منطقة نجران",
+    "منطقة الباحة",
+    "منطقة الحدود الشمالية",
+    "منطقة جازان",
+  ];
+
+  const listCitiesOfSaudi = [
     "الرياض",
-    "الشرقية",
+    "جدة",
     "مكة",
     "المدينة المنورة",
-    "الشرقية",
-    "القصيم",
-    "حائل",
+    "الدمام",
+    "الهفوف",
+    "حفر الباطن",
+    "الحائل",
+    "الطائف",
     "تبوك",
-    "الحدود الشمالية",
-    "جازان",
+    "القطيف",
+    "بريدة",
+    "الجبيل",
+    "حائل",
+    "الخرج",
+    "القنفذة",
+    "المبرز",
+    "ينبع",
+    "سكاكا",
+    "أبها",
+    "صبيا",
+    "الخبر",
+    "قلعة بيشة",
+    "عنيزة",
+    "رأس تنورة",
+    "الحوية",
+    "القريات",
+    "الرس",
+    "جيزان",
+    "الزلفي",
+    "صيحات",
+    "حرض",
+    "الأحد المسارحة",
+    "خميس مشيط",
+    "طريف",
+    "شروة",
+    "رفحاء",
     "نجران",
+    "الليث",
+    "الدرب",
+    "رأس الخفجي",
+    "بدر حنين",
+    "خليص",
+    "النماص",
+    "المجاردة",
+    "الوجه",
+    "المذنب",
+    "أبقيق",
+    "العقيق",
+    "ضليع الرشيد",
+    "شقراء",
+    "المندق",
+    "الظهران",
+    "العيدابي",
+    "قارة",
+    "الشنان",
+    "عرعر",
+    "حقل",
+    "ضبا",
     "الباحة",
-    "الجوف",
-    "عسير",
   ];
 
   useEffect(() => {
@@ -327,8 +391,15 @@ const ScreenProtector = ({ isDarkModeActive }) => {
     );
     selectRegion?.current?.children[0]?.children[0]?.classList?.add("right-8");
     // end selectRegion
-  }, []);
 
+    // start selectCities
+    selectCities?.current?.children[0]?.children[0]?.classList?.remove(
+      "left-3"
+    );
+    selectCities?.current?.children[0]?.children[0]?.classList?.add("right-8");
+    // end selectCities
+  }, []);
+  console.log(message);
   return (
     <Container className="min-h-screen flex flex-col gap-16">
       <div className="flex items-center gap-2 flex-wrap">
@@ -768,7 +839,7 @@ const ScreenProtector = ({ isDarkModeActive }) => {
               onChange={(value) => setMessage({ ...message, region: value })}
               name="flatScreensProducts"
             >
-              {saudiRigion?.map((item, index) => (
+              {saudiRegions?.map((item, index) => (
                 <Option
                   className="text-lg tracking-wide"
                   key={index}
@@ -789,19 +860,29 @@ const ScreenProtector = ({ isDarkModeActive }) => {
             >
               ما هي مدينتك؟
             </Typography>
-            <Input
-              color={isDarkModeActive ? "green" : "gray"}
-              label="المدينة _ الحي"
-              className={inputStyle}
+
+            <Select
+              ref={selectCities}
+              color={isDarkModeActive ? "green" : "black"}
+              label="اختر المدينة"
+              className=" dark:text-darkMode-dark50"
+              labelProps={{
+                className: "text-[0.875rem]",
+              }}
               value={message.city}
-              onChange={(ev) =>
-                setMessage({
-                  ...message,
-                  city: ev.target.value,
-                })
-              }
-              name="city"
-            />
+              onChange={(value) => setMessage({ ...message, city: value })}
+              name="flatScreensProducts"
+            >
+              {listCitiesOfSaudi?.map((item, index) => (
+                <Option
+                  className="text-lg tracking-wide"
+                  key={index}
+                  value={item}
+                >
+                  {item}
+                </Option>
+              ))}
+            </Select>
           </div>
 
           {/* <!-- location details --> */}
