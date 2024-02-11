@@ -201,7 +201,7 @@ const ScreenProtector = ({ isDarkModeActive }) => {
 
           // استخدام toast.promise للإشعارات
           await toast.promise(
-            axios.post("https://al-daraa.onrender.com/send", {
+            axios.post("https://al-daraa.onrender.com/api/gmail/send", {
               ...message,
               flatScreensProducts: products,
             }),
